@@ -1,6 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html,body{
+  min-height: 100vh;
+  height: 100%;
+  font-family: 'Kumbh Sans', sans-serif;
+}
+
+@layer base {
+  h1 {
+    @apply text-3xl;
+  }
+  h2 {
+    @apply text-2xl;
+  }
+  h3 {
+    @apply text-xl;
+  }
+  h4 {
+    @apply text-sm;
+  }
+  p{
+    @apply text-base;
+  }
+}
 
 
 @media (prefers-color-scheme: dark) {
