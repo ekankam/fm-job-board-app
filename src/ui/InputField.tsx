@@ -20,14 +20,15 @@ export default function InputField({
   value,
 }: InputFieldProps) {
   return (
-    <div className="flex items-center gap-4 cursor-pointer">
+    <div className="flex items-center gap-4 cursor-pointer bg-secondary-white dark:bg-primary-dark-blue">
       <Image src={icon} alt={alt} width={iconWidth} height={iconHeight} />
+
       <input
         type="text"
         placeholder={placeholder}
         onChange={onChange}
         value={value}
-        className="w-full py-4 pr-2 text-base border-none outline-none text-dark-blue placeholder:text-dark-blue caret-violet-500 "
+        className="w-full py-4 pr-2 border-none outline-none text-16 text-primary-dark-blue placeholder:text-primary-dark-blue placeholder:text-opacity-50 caret-primary-violet dark:placeholder:text-secondary-white bg-inherit dark:placeholder:text-opacity-50 dark:text-secondary-white"
       />
     </div>
   );

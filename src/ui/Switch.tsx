@@ -33,13 +33,13 @@ export default function Switch(): JSX.Element | null {
       />
       <div
         className={classNames(
-          "w-12 bg-white rounded-xl p-[5px] cursor-pointer group flex justify-start",
+          "w-12 bg-secondary-white rounded-xl p-[5px] cursor-pointer group flex justify-start",
           { "justify-end": theme === "dark" }
         )}
         onClick={handleTheme}
       >
         <motion.div
-          className="bg-violet-700 w-[14px] h-[14px]  rounded-full group-hover:bg-violet-500"
+          className="bg-primary-violet w-[14px] h-[14px]  rounded-full group-hover:bg-primary-light-violet"
           layout
           transition={spring}
         />
