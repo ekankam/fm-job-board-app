@@ -30,5 +30,5 @@ module.exports = {
       28: ["1.75rem", "2.125rem"],
     },
   },
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [],
 };
