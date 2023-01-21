@@ -4,28 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
-html,body{
-  min-height: 100vh;
-  height: 100%;
+html, body {
   font-family: 'Kumbh Sans', sans-serif;
-}
-
-@layer base {
-  h1 {
-    @apply text-3xl;
-  }
-  h2 {
-    @apply text-2xl;
-  }
-  h3 {
-    @apply text-xl;
-  }
-  h4 {
-    @apply text-sm;
-  }
-  p{
-    @apply text-base;
-  }
+  font-weight: 400;
 }
 
 
