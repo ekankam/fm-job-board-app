@@ -1,25 +1,13 @@
-import HeadTag from "@/components/Head";
-import PostCard from "@/ui/PostCard";
-import Switch from "@/ui/Switch";
+import HeadTag from "@/components/HeadTag";
+import Home from "./Home";
 
-function Home() {
+export default function Layout() {
   return (
     <div>
-      <HeadTag tag="Home" />
-      <main className="min-h-screen h-full max-w-[1440px] w-full mx-auto font-normal">
-        <Switch />
-        <div className="m-6">
-          <PostCard
-            time="5h ago"
-            position="full time"
-            title="senior software developer"
-            company="scoot"
-            location="united kingdom"
-          />
-        </div>
+      <HeadTag tag="devjobs | Home" />
+      <main className="min-h-screen h-full max-w-[1440px] w-full mx-auto font-normal min-w-[375px] xs-screen:overflow-x-auto">
+        <Home />
       </main>
     </div>
   );
 }
-
-export default Home;

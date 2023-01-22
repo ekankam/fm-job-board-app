@@ -1,34 +1,38 @@
 import { motion } from "framer-motion";
 import Logo from "./Logo";
-import { Icons } from "@/assets";
 
 type PostCardProps = {
   time: string;
   position: string;
-  title: string;
+  contract: string;
   company: string;
   location: string;
+  logo: string;
+  color: string;
 };
 
 export default function PostCard({
   time,
+  contract,
   position,
-  title,
   company,
   location,
+  logo,
+  color,
 }: PostCardProps) {
   return (
     <motion.article
-      className="max-w-[350px] bg-secondary-white rounded-md pt-[49px] px-8 pb-8 w-full dark:bg-primary-dark-blue relative group cursor-pointer shadow-sm"
+      className="w-[350px] bg-secondary-white rounded-md pt-[49px] px-4 pb-8 dark:bg-primary-dark-blue relative group cursor-pointer shadow-sm min-w-xs"
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.9 }}
     >
       <Logo
         alt="Scoot Company logo"
-        icon={Icons.logos.scoot}
-        className="w-[50px] h-[50px] rounded-[15px] bg-[#E99210] absolute -top-6 left-8"
-        iconWidth={39.98}
+        icon={logo}
+        className="w-[50px] h-[50px] rounded-[15px] absolute -top-6 left-8"
+        iconWidth={30.98}
         iconHeight={11.42}
+        style={{ backgroundColor: color }}
       />
       <div className="flex items-center justify-start mb-[13px]">
         <p className="text-16 text-secondary-dark-gray">{time}</p>
@@ -38,7 +42,7 @@ export default function PostCard({
         </p>
       </div>
       <h3 className="text-20 text-primary-dark-blue font-bold mb-[17px] dark:text-secondary-white group-hover:text-secondary-dark-gray transition-all ease-in-out capitalize">
-        {title}
+        {contract}
       </h3>
       <p className="capitalize text-16 text-secondary-dark-gray mb-11">
         {company}
