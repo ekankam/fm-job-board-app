@@ -12,6 +12,7 @@ const locationIcon = `${desktop}/icon-location.svg`;
 const logoIcon = `${desktop}/logo.svg`;
 const moonIcon = `${desktop}/icon-moon.svg`;
 const searchIcon = `${desktop}/icon-search.svg`;
+const searchWhiteIcon = `${desktop}/icon-search-white.svg`;
 const sunIcon = `${desktop}/icon-sun.svg`;
 
 // logos Svgs
@@ -32,6 +33,7 @@ const vector = `${logos}/vector.svg`;
 const backgroundPatternDetailFooterMobile = `${mobile}/bg-pattern-detail-footer.svg`;
 const backgroundPatternHeaderMobile = `${mobile}/bg-pattern-header.svg`;
 const filterIcon = `${mobile}/icon-filter.svg`;
+const filterWhiteIcon = `${mobile}/icon-filter-white.svg`;
 
 // Tablet Svg
 const backgroundPatternHeaderTablet = `${tablet}/bg-pattern-header.svg`;
@@ -44,6 +46,7 @@ export const Icons = {
     locationIcon,
     moonIcon,
     searchIcon,
+    searchWhiteIcon,
     sunIcon,
     logoIcon,
   },
@@ -65,6 +68,7 @@ export const Icons = {
     backgroundPatternDetailFooterMobile,
     backgroundPatternHeaderMobile,
     filterIcon,
+    filterWhiteIcon,
   },
   tablet: {
     backgroundPatternHeaderTablet,
