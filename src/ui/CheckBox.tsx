@@ -1,14 +1,9 @@
 import Image from "next/image";
 import { Icons } from "@/assets";
 import classNames from "classnames";
+import { CheckBox } from "tyings";
 
-type CheckBoxProps = {
-  label: string;
-  isChecked: boolean;
-  onClick: React.MouseEventHandler<HTMLInputElement> | undefined;
-};
-
-export default function CheckBox({ label, isChecked, onClick }: CheckBoxProps) {
+export default function CheckBox({ label, isChecked, onClick }: CheckBox) {
   return (
     <div className="flex items-center gap-4">
       <div

@@ -1,14 +1,7 @@
 /* eslint-disable prettier/prettier */
-type ButtonProps = {
-  label: string;
-  onClick?:
-  | (React.MouseEventHandler<HTMLButtonElement> &
-    React.MouseEventHandler<HTMLAnchorElement>)
-  | undefined;
-  href?: string | undefined;
-  type?: "button" | "submit" | "reset" | undefined;
-  variant: string | undefined;
-};
+
+import { Button } from "tyings";
+
 
 const primaryStyles =
   "bg-primary-violet text-secondary-white cursor-pointer inline-flex items-center justify-center py-4 px-[31px] font-bold text-16 rounded-[5px] capitalize hover:bg-primary-light-violet transition-all ease-in-out";
@@ -25,7 +18,7 @@ export default function Button({
   href,
   type,
   variant,
-}: ButtonProps) {
+}: Button) {
   const Component = href ? "a" : "button";
   return (
     <Component

@@ -6,20 +6,7 @@ import { Icons } from "@/assets";
 import CheckBox from "@/ui/CheckBox";
 import Button from "@/ui/Button";
 import PostCard from "@/ui/PostCard";
-import data from "../../data.json";
-
-type OverlayProps = {
-  isChecked: boolean;
-  onChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
-  onCheck: React.MouseEventHandler<HTMLInputElement> | undefined;
-  onSearch:
-  | (React.MouseEventHandler<HTMLButtonElement> &
-    React.MouseEventHandler<HTMLAnchorElement>)
-  | undefined;
-  value: string;
-  isModalOpen: boolean;
-  onClose: React.MouseEventHandler<HTMLDivElement>;
-};
+import { Posts, Overlay } from "tyings";
 
 function Overlay({
   onChange,
@@ -29,7 +16,7 @@ function Overlay({
   isModalOpen,
   isChecked,
   onClose,
-}: OverlayProps) {
+}: Overlay) {
   return (
     <>
       {isModalOpen && (
@@ -81,7 +68,7 @@ const initialValues = {
   location: "",
 };
 
-export default function Home() {
+const Home = ({ data }: Posts) => {
   const [isModaleOpen, setIsModaleOpen] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [values, setValues] = useState(initialValues);
@@ -103,12 +90,6 @@ export default function Home() {
     console.log("Function for searching jobs");
   };
 
-  console.log(data);
-
-  function formatColor(color: string) {
-    return color.replace(/^["'](.+(?=["']$))["']$/, "$1");
-  }
-
   return (
     <div>
       <NavigationBar
@@ -128,30 +109,32 @@ export default function Home() {
       />
 
       <div className="grid h-full grid-cols-1 pb-6 md:grid-cols-2 lg:grid-cols-3 gap-y-14 md:gap-y-10 lg:gap-y-12 place-items-center mt-28 lg:w-[1110px] mx-auto">
-        {data.map(
+        {data?.map(
           ({
-            id,
+            _id,
             postedAt,
             contract,
             position,
             company,
             location,
             logo,
-            logoBackground,
+            logoBackgroundColor,
           }) => (
             <PostCard
-              key={id}
-              time={postedAt}
+              key={_id}
+              postedAt={postedAt}
               contract={contract}
               position={position}
               company={company}
               location={location}
               logo={logo}
-              color={formatColor(logoBackground)}
+              logoBackgroundColor={logoBackgroundColor}
             />
           )
         )}
       </div>
     </div>
   );
-}
+};
+
+export default Home;

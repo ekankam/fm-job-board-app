@@ -19,6 +19,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/assets/index.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/assets/index.js", "src/lib/query.js", "src/lib/apis.js"],
   "exclude": ["node_modules"]
 }

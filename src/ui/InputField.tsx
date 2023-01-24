@@ -1,15 +1,5 @@
 import Image from "next/image";
-
-type InputFieldProps = {
-  alt: string;
-  icon: string;
-  placeholder: string;
-  onChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
-  name: string;
-  value: string;
-  iconWidth: number | undefined;
-  iconHeight: number | undefined;
-};
+import { InputField } from "tyings";
 
 export default function InputField({
   alt,
@@ -20,7 +10,7 @@ export default function InputField({
   name,
   onChange,
   value,
-}: InputFieldProps) {
+}: InputField) {
   return (
     <div className="flex items-center gap-4 cursor-pointer bg-secondary-white dark:bg-primary-dark-blue">
       <Image src={icon} alt={alt} width={iconWidth} height={iconHeight} />

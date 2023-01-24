@@ -1,5 +1,4 @@
 import { Icons } from "@/assets";
-import Logo from "@/ui/Logo";
 import Switch from "@/ui/Switch";
 import Image from "next/image";
 
@@ -16,6 +15,24 @@ type NavigationBarProps = {
   onChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
   value: string;
 };
+
+type DisplayImageProps = {
+  src: string;
+  className: string;
+  alt: string;
+};
+
+function DisplayImage({ src, className, alt }: DisplayImageProps) {
+  return (
+    <Image
+      alt={alt}
+      src={src}
+      layout="fill"
+      objectFit="contain"
+      className={className}
+    />
+  );
+}
 
 function MobileSearchBar({
   onOpenModal,
@@ -35,20 +52,16 @@ function MobileSearchBar({
           placeholder="Filter by title..."
           className="py-4 border-none outline-none text-16 text-primary-dark-blue placeholder:text-primary-dark-blue-200 bg-inherit dark:text-secondary-white dark:placeholder:text-secondary-white-200 caret-primary-violet"
         />
-        <div onClick={onOpenModal}>
-          <Image
-            alt="Filter Icon"
+        <div onClick={onOpenModal} className="relative w-5 h-5">
+          <DisplayImage
             src={Icons.mobile.filterIcon}
-            width={19.97}
-            height={20}
             className="dark:hidden"
-          />
-          <Image
             alt="Filter Icon"
+          />
+          <DisplayImage
             src={Icons.mobile.filterWhiteIcon}
-            width={19.97}
-            height={20}
             className="hidden dark:block"
+            alt="Filter Icon"
           />
         </div>
       </div>
@@ -57,12 +70,14 @@ function MobileSearchBar({
         onClick={onFilter}
         className="w-12 h-12 bg-primary-violet rounded-[5px] flex items-center justify-center"
       >
-        <Image
-          alt="Search Icon"
-          src={Icons.desktop.searchWhiteIcon}
-          width={20}
-          height={20}
-        />
+        <div className="relative w-5 h-5 ">
+          <Image
+            alt="Search Icon"
+            src={Icons.desktop.searchWhiteIcon}
+            layout="fill"
+            objectFit="contain"
+          />
+        </div>
       </button>
     </div>
   );
@@ -76,12 +91,14 @@ export default function NavigationBar({
 }: NavigationBarProps) {
   return (
     <nav className="flex items-start justify-between pt-8 px-6 h-[136px] md:h-40 xl:h-[162px] bg-no-repeat bg-mobile-header md:bg-tablet-header lg:bg-desktop-header bg-cover relative lg:px-28 2xl:px-40">
-      <Logo
-        alt="devjobs"
-        icon={Icons.desktop.logoIcon}
-        iconWidth={115}
-        iconHeight={32}
-      />
+      <div className="relative w-[115px] h-8">
+        <Image
+          alt="devjobs"
+          src={Icons.desktop.logoIcon}
+          layout="fill"
+          objectFit="contain"
+        />
+      </div>
       <Switch />
       <MobileSearchBar
         onOpenModal={onOpenModal}
