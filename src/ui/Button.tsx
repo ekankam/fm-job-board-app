@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
-
-import { Button } from "tyings";
+import classnames from "classnames";
+import { ButtonProps } from "tyings";
 
 
 const primaryStyles =
@@ -18,14 +18,15 @@ export default function Button({
   href,
   type,
   variant,
-}: Button) {
+  className,
+}: ButtonProps) {
   const Component = href ? "a" : "button";
   return (
     <Component
       type={type}
       href={href}
       onClick={onClick}
-      className={gusts(variant)}
+      className={classnames(className, gusts(variant))}
     >
       {label}
     </Component>

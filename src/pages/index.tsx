@@ -2,7 +2,7 @@ import HeadTag from "@/components/HeadTag";
 import { post } from "@/lib/query";
 import { Posts } from "tyings";
 import { sanityClient } from "utils/sanity/client";
-import Home from "./Home";
+import Home from "../screens/Home";
 
 export default function Layout({ data }: Posts) {
   return (

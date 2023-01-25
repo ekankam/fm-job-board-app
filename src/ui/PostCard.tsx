@@ -13,7 +13,7 @@ export default function PostCard({
 }: Post) {
   return (
     <motion.article
-      className="w-[350px] bg-secondary-white rounded-md pt-[49px] px-4 pb-8 dark:bg-primary-dark-blue relative group cursor-pointer shadow-sm min-w-xs"
+      className="max-w-[350px] w-full bg-secondary-white rounded-md pt-[49px] px-4 pb-8 dark:bg-primary-dark-blue relative group cursor-pointer shadow-sm"
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.9 }}
     >
@@ -30,7 +30,7 @@ export default function PostCard({
         />
       </div>
 
-      <div className="flex items-center justify-start mb-[13px]">
+      <div className="flex items-center justify-start mb-[13px] flex-wrap">
         <p className="text-16 text-secondary-dark-gray">{postedAt}</p>
         <span className="inline-block w-1 h-1 mx-3 rounded-full bg-secondary-dark-gray" />
         <p className="capitalize text-16 text-secondary-dark-gray">

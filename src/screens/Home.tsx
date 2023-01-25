@@ -6,7 +6,7 @@ import { Icons } from "@/assets";
 import CheckBox from "@/ui/CheckBox";
 import Button from "@/ui/Button";
 import PostCard from "@/ui/PostCard";
-import { Posts, Overlay } from "tyings";
+import { Posts, OverlayProps } from "tyings";
 
 function Overlay({
   onChange,
@@ -16,7 +16,7 @@ function Overlay({
   isModalOpen,
   isChecked,
   onClose,
-}: Overlay) {
+}: OverlayProps) {
   return (
     <>
       {isModalOpen && (
@@ -44,11 +44,7 @@ function Overlay({
               />
             </div>
             <div className="px-6 pt-[27px] flex flex-col gap-[29px]">
-              <CheckBox
-                label="full time only"
-                isChecked={isChecked}
-                onClick={onCheck}
-              />
+              <CheckBox isChecked={isChecked} onClick={onCheck} />
               <Button
                 label="Search"
                 type="submit"
@@ -91,7 +87,7 @@ const Home = ({ data }: Posts) => {
   };
 
   return (
-    <div>
+    <div className="relative">
       <NavigationBar
         onOpenModal={handleModalOpen}
         onFilter={handleFilterLocationPosition}
@@ -108,7 +104,7 @@ const Home = ({ data }: Posts) => {
         value={values.location}
       />
 
-      <div className="grid h-full grid-cols-1 pb-6 md:grid-cols-2 lg:grid-cols-3 gap-y-14 md:gap-y-10 lg:gap-y-12 place-items-center mt-28 lg:w-[1110px] mx-auto">
+      <div className="grid h-full grid-cols-1 pb-6 md:grid-cols-2 lg:grid-cols-3 gap-y-14 md:gap-y-10 lg:gap-y-12 place-items-center mt-28 lg:w-[1110px] mx-auto md:w-[750px]">
         {data?.map(
           ({
             _id,

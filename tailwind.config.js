@@ -22,7 +22,6 @@ module.exports = {
         "secondary-light-gray": "#F4F6F8",
         "secondary-gray": "#9DAEC2",
         "secondary-dark-gray": "#6E8098",
-        test: "hsl(295, 55%, 21%)",
       },
       backgroundImage: {
         "mobile-header": "url('/assets/mobile/bg-pattern-header.svg')",

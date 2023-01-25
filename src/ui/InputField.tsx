@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { InputField } from "tyings";
+import { InputFieldProps } from "tyings";
 
 export default function InputField({
   alt,
@@ -10,9 +10,9 @@ export default function InputField({
   name,
   onChange,
   value,
-}: InputField) {
+}: InputFieldProps) {
   return (
-    <div className="flex items-center gap-4 cursor-pointer bg-secondary-white dark:bg-primary-dark-blue">
+    <div className="flex items-center w-full gap-4 cursor-pointer bg-secondary-white dark:bg-primary-dark-blue">
       <Image src={icon} alt={alt} width={iconWidth} height={iconHeight} />
 
       <input
@@ -22,6 +22,7 @@ export default function InputField({
         value={value}
         name={name}
         className="w-full py-4 pr-2 border-none outline-none text-16 text-primary-dark-blue placeholder:text-primary-dark-blue placeholder:text-opacity-50 caret-primary-violet dark:placeholder:text-secondary-white bg-inherit dark:placeholder:text-opacity-50 dark:text-secondary-white"
+        autoComplete="false"
       />
     </div>
   );

@@ -1,6 +1,7 @@
 import { Icons } from "@/assets";
 import Switch from "@/ui/Switch";
 import Image from "next/image";
+import SearchBar from "./SearchBar";
 
 type MobileSearchBarProps = {
   onOpenModal: React.MouseEventHandler<HTMLDivElement>;
@@ -41,7 +42,7 @@ function MobileSearchBar({
   value,
 }: MobileSearchBarProps) {
   return (
-    <div className="absolute flex items-center h-20 gap-6 rounded-md bg-secondary-white dark:bg-primary-midnight dark:text-secondary-white-200 md:hidden top-[100px] w-[340px] left-1/2 -translate-x-1/2 pl-6 pr-4 dark:shadow-lg">
+    <div className="absolute flex items-center h-20 gap-6 rounded-md bg-secondary-white dark:bg-primary-midnight dark:text-secondary-white-200 top-[100px] w-[340px] left-1/2 -translate-x-1/2 pl-6 pr-4 dark:shadow-lg md:hidden">
       <div className="flex items-center gap-2">
         <input
           type="text"
@@ -90,22 +91,27 @@ export default function NavigationBar({
   value,
 }: NavigationBarProps) {
   return (
-    <nav className="flex items-start justify-between pt-8 px-6 h-[136px] md:h-40 xl:h-[162px] bg-no-repeat bg-mobile-header md:bg-tablet-header lg:bg-desktop-header bg-cover relative lg:px-28 2xl:px-40">
-      <div className="relative w-[115px] h-8">
-        <Image
-          alt="devjobs"
-          src={Icons.desktop.logoIcon}
-          layout="fill"
-          objectFit="contain"
+    <nav className="pt-8 px-6 h-[136px] md:h-40 xl:h-[162px] bg-no-repeat bg-mobile-header md:bg-tablet-header lg:bg-desktop-header bg-cover relative ">
+      <div className="w-[340px] lg:w-[1110px] flex items-start justify-between mx-auto md:w-[750px] max-w-full">
+        <div className="relative w-[115px] h-8">
+          <Image
+            alt="devjobs"
+            src={Icons.desktop.logoIcon}
+            layout="fill"
+            objectFit="contain"
+          />
+        </div>
+        <Switch />
+        <SearchBar />
+        <MobileSearchBar
+          onOpenModal={onOpenModal}
+          onFilter={onFilter}
+          onChange={onChange}
+          value={value}
         />
       </div>
-      <Switch />
-      <MobileSearchBar
-        onOpenModal={onOpenModal}
-        onFilter={onFilter}
-        onChange={onChange}
-        value={value}
-      />
     </nav>
   );
 }
+
+// lg:px-28 2xl:px-40

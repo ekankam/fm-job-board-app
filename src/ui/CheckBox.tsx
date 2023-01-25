@@ -1,9 +1,28 @@
 import Image from "next/image";
 import { Icons } from "@/assets";
 import classNames from "classnames";
-import { CheckBox } from "tyings";
+import { CheckBoxProps } from "tyings";
 
-export default function CheckBox({ label, isChecked, onClick }: CheckBox) {
+const Label = () => {
+  return (
+    <>
+      <label
+        className="font-bold capitalize sm:hidden md:block text-16 text-primary-dark-blue dark:text-secondary-white lg:hidden"
+        htmlFor="checkbox"
+      >
+        Full Time
+      </label>
+      <label
+        className="font-bold capitalize sm:hidden lg:block text-16 text-primary-dark-blue dark:text-secondary-white"
+        htmlFor="checkbox"
+      >
+        Full Time Only
+      </label>
+    </>
+  );
+};
+
+export default function CheckBox({ isChecked, onClick }: CheckBoxProps) {
   return (
     <div className="flex items-center gap-4">
       <div
@@ -24,12 +43,7 @@ export default function CheckBox({ label, isChecked, onClick }: CheckBox) {
         )}
       </div>
 
-      <label
-        className="font-bold capitalize text-16 text-primary-dark-blue dark:text-secondary-white"
-        htmlFor="checkbox"
-      >
-        {label}
-      </label>
+      <Label />
     </div>
   );
 }

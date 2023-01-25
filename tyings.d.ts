@@ -13,7 +13,7 @@ export type Posts = {
   data: Post[];
 };
 
-export type Overlay = {
+export type OverlayProps = {
   isChecked: boolean;
   onChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
   onCheck: React.MouseEventHandler<HTMLInputElement> | undefined;
@@ -26,7 +26,7 @@ export type Overlay = {
   onClose: React.MouseEventHandler<HTMLDivElement>;
 };
 
-export type Button = {
+export type ButtonProps = {
   label: string;
   onClick?:
   | (React.MouseEventHandler<HTMLButtonElement> &
@@ -35,15 +35,15 @@ export type Button = {
   href?: string | undefined;
   type?: "button" | "submit" | "reset" | undefined;
   variant: string | undefined;
+  className?: string;
 };
 
-export type CheckBox = {
-  label: string;
+export type CheckBoxProps = {
   isChecked: boolean;
   onClick: React.MouseEventHandler<HTMLInputElement> | undefined;
 };
 
-export type InputField = {
+export type InputFieldProps = {
   alt: string;
   icon: string;
   placeholder: string;
