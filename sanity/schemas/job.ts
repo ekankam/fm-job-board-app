@@ -26,6 +26,19 @@ export default defineType({
       type: 'string'
     }),
     defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'position',
+        maxLength: 200,
+        slugify: input => input
+          .toLowerCase()
+          .replace(/\s+/g, '-')
+          .slice(0, 200)
+      }
+    }),
+    defineField({
       name: 'postedAt',
       title: 'Posted At',
       type: 'string'
