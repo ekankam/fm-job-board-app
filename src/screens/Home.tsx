@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable prettier/prettier */
 import { useState } from "react";
 import { motion } from "framer-motion";
 import NavigationBar from "@/components/NavigationBar";
@@ -6,7 +8,7 @@ import { Icons } from "@/assets";
 import CheckBox from "@/ui/CheckBox";
 import Button from "@/ui/Button";
 import PostCard from "@/ui/PostCard";
-import { Posts, OverlayProps } from "tyings";
+import { OverlayProps } from "tyings";
 
 function Overlay({
   onChange,
@@ -64,7 +66,15 @@ const initialValues = {
   location: "",
 };
 
-const Home = ({ data }: Posts) => {
+type HomeProps = {
+  data: any[];
+  handleFetchMorePosts: (React.MouseEventHandler<HTMLButtonElement> &
+    React.MouseEventHandler<HTMLAnchorElement>)
+  | undefined;
+  isFetching: boolean;
+};
+
+export default function Home({ data, handleFetchMorePosts, isFetching }: HomeProps) {
   const [isModaleOpen, setIsModaleOpen] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [values, setValues] = useState(initialValues);
@@ -87,7 +97,7 @@ const Home = ({ data }: Posts) => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative mb-14">
       <NavigationBar
         onOpenModal={handleModalOpen}
         onFilter={handleFilterLocationPosition}
@@ -104,10 +114,11 @@ const Home = ({ data }: Posts) => {
         value={values.location}
       />
 
-      <div className="grid h-full grid-cols-1 pb-6 md:grid-cols-2 lg:grid-cols-3 gap-y-14 md:gap-y-10 lg:gap-y-12 place-items-center mt-28 lg:w-[1110px] mx-auto md:w-[750px]">
+      <div className="grid h-full grid-cols-1 pb-6 md:grid-cols-2 lg:grid-cols-3 gap-y-14 md:gap-y-10 lg:gap-y-12 place-items-center mt-28 lg:w-[1110px] mx-auto md:w-[750px] mb-14">
         {data?.map(
           ({
             _id,
+            slug,
             postedAt,
             contract,
             position,
@@ -125,12 +136,19 @@ const Home = ({ data }: Posts) => {
               location={location}
               logo={logo}
               logoBackgroundColor={logoBackgroundColor}
+              slug={slug}
             />
           )
         )}
       </div>
+      {data.length > 0 && <div className="flex items-center justify-center w-full ">
+        <Button
+          label={isFetching ? 'Loading...' : 'Load More'}
+          type="submit"
+          onClick={handleFetchMorePosts}
+          variant="primary"
+        />
+      </div>}
     </div>
   );
-};
-
-export default Home;
+}

@@ -1,5 +1,8 @@
 export type Post = {
   _id?: string;
+  slug?: {
+    current: string;
+  };
   postedAt: string;
   position: string;
   contract: string;
@@ -12,6 +15,20 @@ export type Post = {
 export type Posts = {
   data: Post[];
 };
+
+export interface PostDetails extends Post {
+  websiteLink: string;
+  applicationLink: string;
+  description: string;
+  requirements: {
+    content: string;
+    items: string[];
+  };
+  role: {
+    content: string;
+    items: string[];
+  };
+}
 
 export type OverlayProps = {
   isChecked: boolean;
