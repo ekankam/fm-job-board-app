@@ -38,7 +38,11 @@ export type OverlayProps = {
   | (React.MouseEventHandler<HTMLButtonElement> &
     React.MouseEventHandler<HTMLAnchorElement>)
   | undefined;
-  value: string;
+  values: {
+    title: string;
+    location: string;
+    modalLocation: string;
+  };
   isModalOpen: boolean;
   onClose: React.MouseEventHandler<HTMLDivElement>;
 };
@@ -69,4 +73,5 @@ export type InputFieldProps = {
   value: string;
   iconWidth: number | undefined;
   iconHeight: number | undefined;
+  children?: React.ReactNode;
 };
