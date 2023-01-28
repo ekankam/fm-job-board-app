@@ -14,7 +14,7 @@ function Overlay({
   onChange,
   onCheck,
   onSearch,
-  value,
+  values,
   isModalOpen,
   isChecked,
   onClose,
@@ -41,8 +41,8 @@ function Overlay({
                 iconHeight={24}
                 placeholder="Filter by location..."
                 onChange={onChange}
-                value={value}
-                name="location"
+                value={values?.modalLocation}
+                name="modalLocation"
               />
             </div>
             <div className="px-6 pt-[27px] flex flex-col gap-[29px]">
@@ -61,57 +61,51 @@ function Overlay({
   );
 }
 
-const initialValues = {
-  title: "",
-  location: "",
-};
-
 type HomeProps = {
   data: any[];
   handleFetchMorePosts: (React.MouseEventHandler<HTMLButtonElement> &
     React.MouseEventHandler<HTMLAnchorElement>)
   | undefined;
   isFetching: boolean;
+  values: {
+    title: string;
+    location: string;
+    modalLocation: string;
+  };
+  onChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
+  isChecked: boolean;
+  onCheck: React.MouseEventHandler<HTMLInputElement> | undefined;
+  onSearch:
+  | (React.MouseEventHandler<HTMLButtonElement> &
+    React.MouseEventHandler<HTMLAnchorElement>)
+  | undefined;
 };
 
-export default function Home({ data, handleFetchMorePosts, isFetching }: HomeProps) {
+export default function Home({ data, handleFetchMorePosts, isFetching, onChange, onSearch, values, onCheck, isChecked }: HomeProps) {
   const [isModaleOpen, setIsModaleOpen] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
-  const [values, setValues] = useState(initialValues);
 
   const handleModalOpen = () => setIsModaleOpen(true);
   const handleModalClose = () => setIsModaleOpen(false);
-  const handleCheckbox = () => setIsChecked(!isChecked);
 
-  // eslint-disable-next-line prettier/prettier, @typescript-eslint/no-explicit-any
-  const handleInputChange = (e: { target: { value: any; name: any; } }) => {
-    const { value, name } = e.target;
-    setValues({ ...values, [name]: value });
-  };
-  const handleSearch = () => {
-    console.log("Function for searching jobs");
-  };
-
-  const handleFilterLocationPosition = () => {
-    console.log("Function for searching jobs");
-  };
 
   return (
     <div className="relative mb-14">
       <NavigationBar
         onOpenModal={handleModalOpen}
-        onFilter={handleFilterLocationPosition}
-        onChange={handleInputChange}
-        value={values.title}
+        onSearch={onSearch}
+        onChange={onChange}
+        values={values}
+        onCheck={onCheck}
+        isChecked={isChecked}
       />
       <Overlay
         onClose={handleModalClose}
         isModalOpen={isModaleOpen}
         isChecked={isChecked}
-        onCheck={handleCheckbox}
-        onChange={handleInputChange}
-        onSearch={handleSearch}
-        value={values.location}
+        onCheck={onCheck}
+        onChange={onChange}
+        onSearch={onSearch}
+        values={values}
       />
 
       <div className="grid h-full grid-cols-1 pb-6 md:grid-cols-2 lg:grid-cols-3 gap-y-14 md:gap-y-10 lg:gap-y-12 place-items-center mt-28 lg:w-[1110px] mx-auto md:w-[750px] mb-14">

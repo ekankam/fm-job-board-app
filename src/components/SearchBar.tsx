@@ -1,15 +1,45 @@
-import { useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable prettier/prettier */
 import classnames from "classnames";
 import InputField from "@/ui/InputField";
 import CheckBox from "@/ui/CheckBox";
 import Button from "@/ui/Button";
 import { Icons } from "@/assets";
+import Image from "next/image";
 
-const initialState = {
-  search: "",
-  location: "",
-  isFullTime: false,
+type SearchBarProps = {
+  values: {
+    title: string;
+    location: string;
+    modalLocation: string;
+  };
+  onChange: React.ChangeEventHandler<HTMLInputElement> | undefined;
+  isChecked: boolean;
+  onCheck: React.MouseEventHandler<HTMLInputElement> | undefined;
+  onSearch:
+  | (React.MouseEventHandler<HTMLButtonElement> &
+    React.MouseEventHandler<HTMLAnchorElement>)
+  | undefined;
+  onOpenModal: React.MouseEventHandler<HTMLDivElement>;
 };
+
+type DisplayImageProps = {
+  src: string;
+  className: string;
+  alt: string;
+};
+
+function DisplayImage({ src, className, alt }: DisplayImageProps) {
+  return (
+    <Image
+      alt={alt}
+      src={src}
+      layout="fill"
+      objectFit="contain"
+      className={className}
+    />
+  );
+}
 
 function Divider({ className }: any) {
   return (
@@ -22,44 +52,59 @@ function Divider({ className }: any) {
   );
 }
 
-export default function SearchBar() {
-  const [filterValues, setFilterValues] = useState(initialState);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFilterValues({
-      ...filterValues,
-      [name]: value,
-    });
-  };
-
-  const handleIsChecked = () => {
-    setFilterValues({
-      ...filterValues,
-      isFullTime: !filterValues.isFullTime,
-    });
-  };
-
-  const handleSubmit = () => {
-    console.log("This is function to filter");
-  };
-
+export default function SearchBar({
+  values,
+  onChange,
+  isChecked,
+  onCheck,
+  onSearch,
+  onOpenModal,
+}: SearchBarProps) {
   return (
-    <form className="xs-screen:hidden md:inline-flex md:absolute md:items-center md:w-[750px] w-full md:h-20 md:pl-4 md:pr-4 md:-translate-x-1/2 md:rounded-md md:shadow-sm md:bg-secondary-white md:dark:bg-primary-dark-blue md:top-32 md:left-1/2 md:py-7 lg:w-[1110px] gap-2 lg:pl-8">
-      <div className="flex-1">
+    <form className="flex absolute items-center md:w-[750px] w-full h-20 pl-4 pr-4 -translate-x-1/2 rounded-md shadow-sm bg-secondary-white dark:bg-primary-dark-blue xs-screen:top-24 md:top-32 left-1/2 py-7 lg:w-[1110px] gap-2 lg:pl xs-screen:w-[350px]">
+      <div className="flex-1 sm:flex sm:items-center">
         <InputField
           alt="Search"
           icon={Icons.desktop.searchIcon}
           iconWidth={24}
           iconHeight={24}
           placeholder="Filter by title, companies, expertise…"
-          name="search"
-          onChange={handleChange}
-          value={filterValues.search}
-        />
+          name="title"
+          onChange={onChange}
+          value={values?.title}
+        >
+          <div onClick={onOpenModal} className="relative w-5 h-5 md:hidden">
+            <DisplayImage
+              src={Icons.mobile.filterIcon}
+              className="dark:hidden"
+              alt="Filter Icon"
+            />
+            <DisplayImage
+              src={Icons.mobile.filterWhiteIcon}
+              className="hidden dark:block"
+              alt="Filter Icon"
+            />
+          </div>
+          <button
+            type="submit"
+            onClick={onSearch}
+            className="w-20 h-12 bg-primary-violet rounded-[5px] flex items-center justify-center md:hidden"
+          >
+            <div className="relative w-5 h-5 ">
+              <Image
+                alt="Search Icon"
+                src={Icons.desktop.searchWhiteIcon}
+                layout="fill"
+                objectFit="contain"
+              />
+            </div>
+          </button>
+        </InputField>
+
       </div>
-      <Divider className="left-[33%]" />
-      <div className="w-1/3">
+      <Divider className="md:left-[33%] md:block xs-screen:hidden" />
+      <div className="xs-screen:hidden md:w-1/3 md:block">
         <InputField
           alt="Search"
           icon={Icons.desktop.locationIcon}
@@ -67,20 +112,17 @@ export default function SearchBar() {
           iconHeight={24}
           placeholder="Filter by location…"
           name="location"
-          onChange={handleChange}
-          value={filterValues.location}
+          onChange={onChange}
+          value={values?.location}
         />
       </div>
-      <Divider className="left-[66%]" />
-      <div className="flex items-center justify-between flex-1">
-        <CheckBox
-          isChecked={filterValues.isFullTime}
-          onClick={handleIsChecked}
-        />
+      <Divider className="md:left-[66%] xs-screen:hidden md:block" />
+      <div className="md:items-center md:justify-between md:flex-1 md:flex xs-screen:hidden">
+        <CheckBox isChecked={isChecked} onClick={onCheck} />
         <Button
           variant="primary"
           label="Search"
-          onClick={handleSubmit}
+          onClick={onSearch}
           type="submit"
           className="w-[177px] md:w-24"
         />
@@ -88,45 +130,3 @@ export default function SearchBar() {
     </form>
   );
 }
-
-/*
-  <InputField
-        alt="Search"
-        icon={Icons.desktop.searchIcon}
-        iconWidth={24}
-        iconHeight={24}
-        placeholder="Filter by title, companies, expertise…"
-        name="search"
-        onChange={handleChange}
-        value={filterValues.search}
-      />
-
-      <Divider className="left-[32%]" />
-
-      <InputField
-        alt="Search"
-        icon={Icons.desktop.locationIcon}
-        iconWidth={17}
-        iconHeight={24}
-        placeholder="Filter by location…"
-        name="location"
-        onChange={handleChange}
-        value={filterValues.location}
-      />
-
-      <Divider className="left-[64%]" />
-
-      <CheckBox
-        label="Full Time Only"
-        isChecked={filterValues.isFullTime}
-        onClick={handleIsChecked}
-      />
-      <Button
-        variant="primary"
-        label="Search"
-        onClick={handleSubmit}
-        type="submit"
-        className="w-[177px]"
-      />
-
-*/

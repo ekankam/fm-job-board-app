@@ -3,13 +3,19 @@
 import { useState, useEffect } from "react";
 import HeadTag from "@/components/HeadTag";
 import { fetchMorePosts, posts } from "@/lib/query";
-import { Post, Posts } from "tyings";
 import { sanityClient } from "utils/sanity/client";
 import Home from "../screens/Home";
+
+const initialValues = {
+  title: "",
+  location: "",
+  modalLocation: "",
+};
 
 export default function Layout() {
   const [data, setData] = useState<any[]>([]);
   const [isFetching, setIsFetching] = useState(false);
+  const [values, setValues] = useState(initialValues);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,6 +38,17 @@ export default function Layout() {
     }
   };
 
+  const handleInputChange = (e: {
+    preventDefault: () => void;
+    target: { name: any; value: any };
+  }) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setValues({ ...values, [name]: value });
+  };
+
+  console.log(values);
+
   return (
     <div>
       <HeadTag tag="devjobs | Home" />
@@ -40,6 +57,7 @@ export default function Layout() {
           data={data}
           handleFetchMorePosts={handleFetchMorePosts}
           isFetching={isFetching}
+          onChange={handleInputChange}
         />
       </main>
     </div>
