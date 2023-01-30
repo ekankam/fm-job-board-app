@@ -7,13 +7,13 @@ const Label = () => {
   return (
     <>
       <label
-        className="font-bold capitalize sm:hidden md:block text-16 text-primary-dark-blue dark:text-secondary-white lg:hidden"
+        className="font-bold capitalize xs-screen:hidden md:block text-16 text-primary-dark-blue dark:text-secondary-white lg:hidden"
         htmlFor="checkbox"
       >
         Full Time
       </label>
       <label
-        className="font-bold capitalize sm:hidden lg:block text-16 text-primary-dark-blue dark:text-secondary-white"
+        className="font-bold capitalize md:hidden text-16 text-primary-dark-blue dark:text-secondary-white lg:block"
         htmlFor="checkbox"
       >
         Full Time Only

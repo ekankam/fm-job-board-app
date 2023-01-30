@@ -8,10 +8,10 @@ module.exports = {
     extend: {
       colors: {
         "primary-violet": "#5964E0",
-        "primary-light-violet": "#939BF4",
         "primary-violet-100": "#5964E01A",
         "primary-violet-200": "#5964E059",
         "primary-violet-300": "#5964E04A",
+        "primary-light-violet": "#939BF4",
         "primary-dark-blue": "#19202D",
         "primary-dark-blue-100": "#19202D33",
         "primary-dark-blue-200": "#19202D80",
@@ -29,9 +29,6 @@ module.exports = {
         "tablet-header": "url('/assets/tablet/bg-pattern-header.svg')",
         "desktop-header": "url('/assets/desktop/bg-pattern-header.svg')",
         "desktop-footer": "url('/assets/desktop/bg-pattern-detail-footer.svg')",
-      },
-      screens: {
-        "xs-screen": "320px",
       },
     },
     fontSize: {

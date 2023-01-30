@@ -1,4 +1,4 @@
-export type Post = {
+export type PostProps = {
   _id?: string;
   slug?: {
     current: string;
@@ -12,11 +12,12 @@ export type Post = {
   logoBackgroundColor: string;
 };
 
-export type Posts = {
+export type PostsProps = {
   data: Post[];
 };
 
-export interface PostDetails extends Post {
+export interface PostDetailsProps extends Post {
+  [x: string]: any;
   websiteLink: string;
   applicationLink: string;
   description: string;

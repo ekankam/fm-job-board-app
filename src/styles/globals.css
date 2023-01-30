@@ -8,6 +8,37 @@
   font-family: 'Kumbh Sans', sans-serif;
 }
 
+.grid-container {
+  max-width: 1110px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 119px;
+  padding: 0px 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(327px, 1fr));
+  column-gap: 1.5rem;
+  row-gap: 49px;
+  place-items: center;
+}
+
+@layer components {
+  .post-container {
+    @apply h-full pt-[49px] px-7 md:px-8 pb-8 bg-secondary-white dark:bg-primary-dark-blue relative cursor-pointer shadow-sm rounded-[5px] w-[327px] md:w-[350px];
+  }
+
+  .post-logo {
+    @apply flex items-center justify-center w-[50px] h-[50px] absolute -top-6 left-8 rounded-[15px];
+  }
+
+  .post-contract {
+    @apply text-20 text-primary-dark-blue font-bold mb-[17px] dark:text-secondary-white group-hover:text-secondary-dark-gray transition-all ease-in-out capitalize;
+  }
+
+  .search-input {
+    @apply block w-full appearance-none outline-primary-violet text-16 text-primary-dark-blue placeholder:text-primary-dark-blue placeholder:text-opacity-50 caret-primary-violet dark:placeholder:text-secondary-white bg-inherit dark:placeholder:text-opacity-50 dark:text-secondary-white;
+  }
+}
+
 
 @media (prefers-color-scheme: dark) {
   html {

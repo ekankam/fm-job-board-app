@@ -1,10 +1,9 @@
 import { post, slugs } from "@/lib/query";
-import { PostDetails } from "tyings";
+import { PostDetailsProps } from "tyings";
 import { sanityClient } from "utils/sanity/client";
 
-export default function Post(props: PostDetails) {
-  console.log(props);
-  return <div>This is detail page</div>;
+export default function Post(props: PostDetailsProps) {
+  return <div>This is detail page {props.data.company}</div>;
 }
 
 export async function getStaticPaths() {
