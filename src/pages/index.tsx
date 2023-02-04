@@ -10,7 +10,6 @@ import Modal from "@/components/Modal";
 
 export default function Home() {
   const { data, isFetching, handleLoadMorePost } = useContext(PostContext);
-  console.log(data);
 
   return (
     <>
