@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import client from "@sanity/client";
 
 export const sanityClient = client({
