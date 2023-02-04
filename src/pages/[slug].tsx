@@ -50,7 +50,7 @@ type FooterProps = {
 
 function Footer({ position, company, applicationLink }: FooterProps) {
   return (
-    <footer className="w-full rounded-md bg-secondary-white dark:bg-primary-dark-blue mt-[53px] p-6 mb-2 flex items-center justify-center absolute left-0 -bottom-[150px]">
+    <footer className="w-full rounded-md bg-secondary-white dark:bg-primary-dark-blue mt-[53px] p-6 mb-2 flex items-center justify-center">
       <div className="md:flex md:items-center md:justify-between w-[740px]">
         <div className="hidden md:block md:flex-1">
           <p className="mb-3 font-bold text-20 dark:text-secondary-white text-primary-dark-blue">
@@ -79,8 +79,8 @@ function Footer({ position, company, applicationLink }: FooterProps) {
 
 export default function Post(props: PostDetailsProps) {
   const {
-    logoBackgroundColor,
     company,
+    logoBackgroundColor,
     logo,
     websiteLink,
     postedAt,
@@ -91,15 +91,16 @@ export default function Post(props: PostDetailsProps) {
     description,
     requirements,
     role,
-    // eslint-disable-next-line no-unsafe-optional-chaining
-  } = props?.data;
+  } = props.data;
 
   return (
     <>
       <div className="md:max-w-[780px] mx-auto">
         <div className="absolute bg-secondary-white dark:bg-primary-dark-blue rounded-md h-[230px] top-28 left-1/2 -translate-x-1/2 md:h-[140px] md:flex w-[357px] md:w-[740px]">
           <div
-            style={{ backgroundColor: logoBackgroundColor }}
+            style={{
+              backgroundColor: logoBackgroundColor && logoBackgroundColor,
+            }}
             className="banner-logo md:hidden"
           >
             <Image
@@ -190,13 +191,11 @@ export async function getStaticPaths() {
 
   return {
     paths: paths.map((slug: string) => ({ params: { slug } })),
-    fallback: true,
+    fallback: false,
   };
 }
 
-export async function getStaticProps(context: {
-  params: { slug?: "" | undefined };
-}) {
+export async function getStaticProps(context: { params: { slug: "" } }) {
   const { slug = "" } = context.params;
   const data = await sanityClient.fetch(post, { slug });
   return {

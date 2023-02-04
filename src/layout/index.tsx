@@ -1,3 +1,5 @@
+import { useRouter } from "next/router";
+import { AnimatePresence, motion } from "framer-motion";
 import { Icons } from "@/assets";
 import Switch from "@/ui/Switch";
 import Image from "next/image";
@@ -28,10 +30,35 @@ function Header() {
 }
 
 export default function Layout({ children }: LayoutProps) {
+  const router = useRouter();
   return (
-    <div className="min-w-[375px] max-w-[1440px] w-full min-h-screen mx-auto font-normal relative">
-      <Header />
-      <main className="min-w-[340px] mx-auto">{children}</main>
-    </div>
+    <AnimatePresence mode="wait">
+      <motion.div
+        className="min-w-[375px] max-w-[1440px] w-full min-h-screen mx-auto font-normal relative"
+        key={router.route}
+        initial="initailState"
+        animate="animateState"
+        exit="exitState"
+        transition={{
+          duration: 0.75,
+        }}
+        variants={{
+          initialState: {
+            opacity: 0,
+            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+          },
+          animateState: {
+            opacity: 1,
+            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+          },
+          exitState: {
+            clipPath: "polygon(50% 0, 50% 0, 50% 100%, 50% 100%)",
+          },
+        }}
+      >
+        <Header />
+        <main className="min-w-[340px] mx-auto">{children}</main>
+      </motion.div>
+    </AnimatePresence>
   );
 }

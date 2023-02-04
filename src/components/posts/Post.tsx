@@ -19,6 +19,11 @@ export default function Post({
         className="post-container"
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.9 }}
+        initial={{ y: 25, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{
+          duration: 0.75,
+        }}
       >
         <div
           style={{ backgroundColor: logoBackgroundColor }}
