@@ -17,8 +17,6 @@ export default function Post({
     <Link href={`/${slug?.current}`}>
       <motion.article
         className="post-container"
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.9 }}
         initial={{ y: 25, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{
