@@ -37,6 +37,10 @@
   .search-input {
     @apply block w-full appearance-none outline-primary-violet text-16 text-primary-dark-blue placeholder:text-primary-dark-blue placeholder:text-opacity-50 caret-primary-violet dark:placeholder:text-secondary-white bg-inherit dark:placeholder:text-opacity-50 dark:text-secondary-white;
   }
+
+  .banner-logo {
+    @apply flex items-center justify-center w-[50px] h-[50px] absolute -top-6 left-1/2 -translate-x-1/2 rounded-[15px] md:top-0 md:w-[140px] md:h-[140px] md:rounded-none md:left-[70px];
+  }
 }
 
 

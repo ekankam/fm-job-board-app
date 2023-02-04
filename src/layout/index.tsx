@@ -29,9 +29,9 @@ function Header() {
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <div className="min-w-[375px] max-w-[1440px] w-full min-h-screen mx-auto font-normal">
+    <div className="min-w-[375px] max-w-[1440px] w-full min-h-screen mx-auto font-normal relative">
       <Header />
-      <main>{children}</main>
+      <main className="min-w-[340px] mx-auto">{children}</main>
     </div>
   );
 }
